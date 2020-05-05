@@ -43,9 +43,9 @@ def predict_for_deepphos(train_file_name,db,sites,predictFrame = 'general',
     win2 = 33
     win3 = 15
     from methods.dataprocess_predict import getMatrixInput
-    [X_test1,y_test,ids,position] = getMatrixInput(train_file_name, sites, win1, db=db)
-    [X_test2,_,_,_] = getMatrixInput(train_file_name, sites, win2, db=db)
-    [X_test3,_,_,_]  = getMatrixInput(train_file_name, sites, win3, db=db)
+    [X_test1,y_test,ids,position] = getMatrixInput(train_file_name, sites,db, win1)
+    [X_test2,_,_,_] = getMatrixInput(train_file_name, sites, db, win2)
+    [X_test3,_,_,_]  = getMatrixInput(train_file_name, sites, db, win3)
 
 #     print X_test1.shape
 #     print len(position)
