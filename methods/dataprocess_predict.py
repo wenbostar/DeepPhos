@@ -8,6 +8,7 @@ import keras.utils.np_utils as kutils
 
 from Bio import SeqIO
 import pandas as pd
+import sys
 
 
 def getMatrixInput(positive_position_file_name,sites, db, window_size=51, empty_aa = '*'):
@@ -66,6 +67,9 @@ def getMatrixInput(positive_position_file_name,sites, db, window_size=51, empty_
             short_seqs.append(shortseq)
             # coding = one_hot_concat(shortseq)
             # all_codings.append(coding)
+        else:
+            print(row)
+            sys.exit("Invalid position: %s" % (int(center)))
 
     all_label = [0] * 5 + [1] * (len(short_seqs) - 5)
     targetY = kutils.to_categorical(all_label)
