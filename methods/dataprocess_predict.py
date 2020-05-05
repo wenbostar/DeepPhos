@@ -33,9 +33,9 @@ def getMatrixInput(positive_position_file_name,sites, window_size=51, empty_aa =
                 #short seq
                 if position - half_len > 0:
                     start = position - half_len
-                    left_seq = sseq[start - 1:position - 1]
+                    left_seq = sseq[int(start - 1):int(position - 1)]
                 else:
-                    left_seq = sseq[0:position - 1]
+                    left_seq = sseq[0:int(position - 1)]
 
                 end = len(sseq)
                 if position + half_len < end:
