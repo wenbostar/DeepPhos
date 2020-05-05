@@ -23,7 +23,7 @@ from keras.regularizers import l2
 import copy
 import sys
 
-def predict_for_deepphos(train_file_name,sites,predictFrame = 'general',
+def predict_for_deepphos(train_file_name,db,sites,predictFrame = 'general',
                          hierarchy=None, kinase=None):
     '''
 
@@ -43,9 +43,9 @@ def predict_for_deepphos(train_file_name,sites,predictFrame = 'general',
     win2 = 33
     win3 = 15
     from methods.dataprocess_predict import getMatrixInput
-    [X_test1,y_test,ids,position] = getMatrixInput(train_file_name, sites, win1)
-    [X_test2,_,_,_] = getMatrixInput(train_file_name, sites, win2)
-    [X_test3,_,_,_]  = getMatrixInput(train_file_name, sites, win3)
+    [X_test1,y_test,ids,position] = getMatrixInput(train_file_name, sites, win1, db=db)
+    [X_test2,_,_,_] = getMatrixInput(train_file_name, sites, win2, db=db)
+    [X_test3,_,_,_]  = getMatrixInput(train_file_name, sites, win3, db=db)
 
 #     print X_test1.shape
 #     print len(position)
@@ -80,10 +80,11 @@ if __name__ == '__main__':
     #                     hierarchy='group', kinase='AGC')
     
     train_file_name = sys.argv[1]
+    db = sys.argv[2]
     site = 'ST'
-    predict_for_deepphos(train_file_name, site, predictFrame='general')
+    predict_for_deepphos(train_file_name, db, site, predictFrame='general')
     site = 'Y'
-    predict_for_deepphos(train_file_name, site, predictFrame='general')
+    predict_for_deepphos(train_file_name, db, site, predictFrame='general')
 
 
 
