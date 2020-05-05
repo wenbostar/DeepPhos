@@ -21,6 +21,7 @@ from keras.optimizers import Adam,SGD
 from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
 import copy
+import sys
 
 def predict_for_deepphos(train_file_name,sites,predictFrame = 'general',
                          hierarchy=None, kinase=None):
