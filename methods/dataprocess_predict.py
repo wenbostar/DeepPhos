@@ -101,9 +101,12 @@ def getMatrixInput(positive_position_file_name,sites, db, window_size=51, empty_
     for seq in short_seqs:
         AANo = 0
         for AA in seq:
-            index = letterDict[AA]
-            # print index
-            Matr[samplenumber][AANo][index] = 1
+            if AA in letterDict:
+                index = letterDict[AA]
+                # print index
+                Matr[samplenumber][AANo][index] = 1
+            else:
+                print("non-canonical amino acid: %s in %s!" % (AA,seq))
             # print samplenumber
             AANo = AANo + 1
         samplenumber = samplenumber + 1
