@@ -10,7 +10,7 @@ from Bio import SeqIO
 import pandas as pd
 
 
-def getMatrixInput(positive_position_file_name,sites, window_size=51, empty_aa = '*',db):
+def getMatrixInput(positive_position_file_name,sites, db, window_size=51, empty_aa = '*'):
     # input format  proteinName, postion, shortsequence,
     prot = []  # list of protein name
     pos = []  # list of position with protein name
