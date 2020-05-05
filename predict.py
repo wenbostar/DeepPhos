@@ -56,7 +56,7 @@ def predict_for_deepphos(train_file_name,sites,predictFrame = 'general',
     #load model weight
     if predictFrame == 'general':
         outputfile = 'general_{:s}'.format(site)
-        if site == ('S','T'):
+        if site == 'ST':
             model_weight = './models/model_general_S,T.h5'
         if site == 'Y':
             model_weight = './models/model_general_Y.h5'
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     #                     hierarchy='group', kinase='AGC')
     
     train_file_name = sys.argv[1]
-    site = 'S','T'
+    site = 'ST'
     predict_for_deepphos(train_file_name, site, predictFrame='general')
     site = 'Y'
     predict_for_deepphos(train_file_name, site, predictFrame='general')
