@@ -72,12 +72,17 @@ def predict_for_deepphos(train_file_name,db,sites,predictFrame = 'general',
     res['protein'] = ids
     res['pos'] = position
     res['prob'] = predictions_t[:, 1]
+    result = pd.DataFrame(res)
+    
+    dat = pd.read_table(train_file_name, header=0, sep="\t")
+    dat['y_pred'] = result['prob']
     
     #results_ST = np.column_stack((ids, position,predictions_t[:, 1]))
 
     #result = pd.DataFrame(results_ST)
-    result = pd.DataFrame(res)
-    result.to_csv(outputfile + "prediction_phosphorylation.txt", index=False, sep='\t')
+    
+    dat.to_csv(outputfile + "prediction_phosphorylation.txt", index=False, sep='\t')
+    
 if __name__ == '__main__':
     #train_file_name = 'test data.csv'
     #site = 'S','T'
