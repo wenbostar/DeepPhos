@@ -69,7 +69,7 @@ def getMatrixInput(positive_position_file_name,sites, db, window_size=51, empty_
             # all_codings.append(coding)
         else:
             print(row)
-            sys.exit("Invalid position: %s" % (int(center)))
+            sys.exit("Invalid position: %s" % (str(center)))
 
     all_label = [0] * 5 + [1] * (len(short_seqs) - 5)
     targetY = kutils.to_categorical(all_label)
