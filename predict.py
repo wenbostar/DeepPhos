@@ -24,7 +24,7 @@ import copy
 import sys
 
 def predict_for_deepphos(train_file_name,db,sites,predictFrame = 'general',
-                         hierarchy=None, kinase=None):
+                         hierarchy=None, kinase=None, prefix="deepphos"):
     '''
 
     :param train_file_name: input of your prdict file
@@ -81,7 +81,7 @@ def predict_for_deepphos(train_file_name,db,sites,predictFrame = 'general',
 
     #result = pd.DataFrame(results_ST)
     
-    dat.to_csv(outputfile + "prediction_phosphorylation.txt", index=False, sep='\t')
+    dat.to_csv(outputfile + "_prediction_phosphorylation_" + str(prefix) + ".tsv", index=False, sep='\t')
     
 if __name__ == '__main__':
     #train_file_name = 'test data.csv'
@@ -91,6 +91,8 @@ if __name__ == '__main__':
     
     train_file_name = sys.argv[1]
     db = sys.argv[2]
+    out_prefix = sys.argv[3]
+    
     site = 'ST'
     dat = pd.read_table(train_file_name, header=0, sep="\t")
     
@@ -99,11 +101,11 @@ if __name__ == '__main__':
     
     stdata = pd.concat([sdata,tdata],axis=0)
     stdata.to_csv("st_input_data.tsv", index=False, sep='\t')
-    predict_for_deepphos("st_input_data.tsv", db, site, predictFrame='general')
+    predict_for_deepphos("st_input_data.tsv", db, site, predictFrame='general',prefix=out_prefix)
     site = 'Y'
     ydata = dat.query('aa=="Y"')
     ydata.to_csv("y_input_data.tsv", index=False, sep='\t')
-    predict_for_deepphos("y_input_data.tsv", db, site, predictFrame='general')
+    predict_for_deepphos("y_input_data.tsv", db, site, predictFrame='general',prefix=out_prefix)
 
 
 
