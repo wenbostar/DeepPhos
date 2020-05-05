@@ -8,3 +8,4 @@ pip install scikit-learn
 pip uninstall tensorflow tensorflow-estimator
 pip install tensorflow-gpu==1.15
 pip install pandas
+pip install biopython
