@@ -50,6 +50,7 @@ def getMatrixInput(positive_position_file_name,sites, window_size=51, empty_aa =
 
                 if len(right_seq) < half_len:
                     nb_lack = half_len - len(right_seq)
+                    nb_lack = int(nb_lack)
                     right_seq = right_seq + ''.join([empty_aa for count in range(nb_lack)])
                 shortseq = left_seq + center + right_seq
                 short_seqs.append(shortseq)
