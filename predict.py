@@ -92,9 +92,18 @@ if __name__ == '__main__':
     train_file_name = sys.argv[1]
     db = sys.argv[2]
     site = 'ST'
-    predict_for_deepphos(train_file_name, db, site, predictFrame='general')
+    dat = pd.read_table(train_file_name, header=0, sep="\t")
+    
+    sdata = dat.query('aa=="S"')
+    tdata = dat.query('aa=="T"')
+    
+    stdata = pd.concat([sdata,tdata],axis=0)
+    stdata.to_csv("st_input_data.tsv", index=False, sep='\t')
+    predict_for_deepphos("st_input_data.tsv", db, site, predictFrame='general')
     site = 'Y'
-    predict_for_deepphos(train_file_name, db, site, predictFrame='general')
+    ydata = dat.query('aa=="Y"')
+    ydata.to_csv("y_input_data.tsv", index=False, sep='\t')
+    predict_for_deepphos("y_input_data.tsv", db, site, predictFrame='general')
 
 
 
